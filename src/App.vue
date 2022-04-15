@@ -15,6 +15,10 @@ export default {
   components: {
     Header,
     Footer
+  },
+  mounted(){
+        //派发acition
+    this.$store.dispatch("categoryList");
   }
 }
 </script>

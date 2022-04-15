@@ -4,10 +4,10 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
-import Home from '@/pages/Home'
-import Search from '@/pages/Search'
-import Login from '@/pages/Login'
-import Register from '@/pages/Register'
+import Home from '@/views/Home'
+import Search from '@/views/Search'
+import Login from '@/views/Login'
+import Register from '@/views/Register'
 //需要重写VueRouter.prototype原型对象身上的push|replace方法
 //先把VueRouter.prototype身上的push|replace方法进行保存一份
 let originPush = VueRouter.prototype.push;
@@ -54,7 +54,7 @@ export default new VueRouter({
             meta:{show:true}
         },
         {
-            path:"/search:keyword",
+            path:"/search/:keyword?",
             name:'search',
             component:Search,
             meta:{show:true}

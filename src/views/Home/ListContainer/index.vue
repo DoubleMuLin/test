@@ -5,18 +5,13 @@
         <!--banner轮播-->
         <div class="swiper-container" id="mySwiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="./images/banner1.jpg" />
+            <div
+              class="swiper-slide"
+              v-for="(carousel, index) in bannerList"
+              :key="carousel.id"
+            >
+              <img :src="carousel.imgUrl" />
             </div>
-            <!-- <div class="swiper-slide">
-              <img src="./images/banner2.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="./images/banner3.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="./images/banner4.jpg" />
-            </div> -->
           </div>
           <!-- 如果需要分页器 -->
           <div class="swiper-pagination"></div>
@@ -100,7 +95,41 @@
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+import Swiper from 'swiper';
+export default {
+  name: "",
+  mounted() {
+    this.$store.dispatch("getBannerList");
+  },
+  computed: {
+    ...mapState({
+      bannerList: (state) => state.home.bannerList,
+    }),
+  },
+  watch: {
+    //监听bannerList数据的变化：由空数组变为有四个元素
+    bannerList: {
+      handler(newValue, oldValue) {
+        this.$nextTick(() => {
+          var mySwiper = new Swiper(document.querySelector(".swiper-container"), {
+            loop: true,
+            //如果需要分页器
+            pagination: {
+              el: ".swiper-pagination",
+              //点击小球的时候也切换图片
+              clickable: true,
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+          });
+        });
+      },
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
