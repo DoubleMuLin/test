@@ -1,8 +1,9 @@
-import { reqCategoryList ,reqGetBannerList} from '@/api/data'
+import { reqCategoryList ,reqGetBannerList,reqFloorList} from '@/api/data'
 const state = {
     //state中数据默认初始值别瞎写，服务器返回对象，服务器返回数组。【根据接口返回值初始化】
     categoryList: [],
-    bannerList:[]
+    bannerList:[],
+    floorList:[]
 };
 //mutations：修改state的唯一手段
 const mutations = {
@@ -11,6 +12,10 @@ const mutations = {
     },
     GETBANNERLIST(state,bannerList){
         state.bannerList = bannerList
+
+    },
+    GETFLOORLIST(state,floorList){
+        state.floorList = floorList
 
     }
 
@@ -30,6 +35,12 @@ const actions = {
         let result = await reqGetBannerList();
         if(result.code == 200){
             commit('GETBANNERLIST',result.data)
+        }
+    },
+    async getFloorList({commit}) {
+        let result = await reqFloorList();
+        if(result.code == 200){
+            commit('GETFLOORLIST',result.data)
         }
     }
 };
