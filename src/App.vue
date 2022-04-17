@@ -28,5 +28,8 @@ export default {
  #nprogress .bar {
      background: #12c56c !important; 
   }
-
+#nprogress .spinner-icon{
+  border-top-color: #12c56c!important;
+  border-left-color: #12c56c!important;
+}
 </style>
