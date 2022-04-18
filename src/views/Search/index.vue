@@ -77,9 +77,9 @@
               <li class="yui3-u-1-5" v-for="good in goodsList" :key="good.id">
                 <div class="list-wrap">
                   <div class="p-img">
-                    <a href="item.html" target="_blank">
+                    <router-link :to="`/detail/${good.id}`"> 
                       <img :src="good.defaultImg" />
-                    </a>
+                    </router-link>
                   </div>
                   <div class="price">
                     <strong>
@@ -115,6 +115,7 @@
             :pageSize="searchParams.pageSize"
             :total="total"
             :continues="5"
+            @getPageNo="getPageNo"
           />
         </div>
       </div>
@@ -252,6 +253,13 @@ export default {
       }
       //需要给order重新赋值
       this.searchParams.order = newOrder;
+      //再次发请求
+      this.getData();
+    },
+        //自定义事件的回调函数---获取当前第几页
+    getPageNo(pageNo) {
+      //整理带给服务器参数
+      this.searchParams.pageNo = pageNo;
       //再次发请求
       this.getData();
     },

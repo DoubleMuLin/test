@@ -28,23 +28,7 @@
             </div>
             <!-- 轮播图 -->
             <div class="floorBanner">
-              <div class="swiper-container" ref="cur">
-                <div class="swiper-wrapper">
-                  <div
-                    class="swiper-slide"
-                    v-for="(carousel, index) in list.carouselList"
-                    :key="carousel.id"
-                  >
-                    <img :src="carousel.imgUrl" />
-                  </div>
-                </div>
-                <!-- 如果需要分页器 -->
-                <div class="swiper-pagination"></div>
-
-                <!-- 如果需要导航按钮 -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-              </div>
+              <Carsousel :list="list.carouselList" />
             </div>
             <div class="split">
               <span class="floor-x-line"></span>
@@ -75,7 +59,6 @@
 </template>
 
 <script>
-import Swiper from 'swiper'
 export default {
   name: "",
   props: ["list"],
@@ -84,19 +67,6 @@ export default {
     //第一次书写Swiper的时候：在mounted当中书写是不可以的，但是为什么现在这里可以啦！
     //第一次书写轮播图的时候，是在当前组件内部发请求、动态渲染解构【前台至少服务器数据需要回来】，因此当年的写法在这里不行
     //现在的这种写法为什么可以：因为请求是父组件发的，父组件通过props传递过来的，而且结构都已经有了的情况下执行mounted
-    new Swiper(this.$refs.cur, {
-      loop: true,
-      //如果需要分页器
-      pagination: {
-        el: ".swiper-pagination",
-        //点击小球的时候也切换图片
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
   },
 };
 </script>
@@ -148,8 +118,6 @@ export default {
                 }
               }
             }
-
-
           }
         }
       }

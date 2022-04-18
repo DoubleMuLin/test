@@ -30,3 +30,10 @@ export const reqGetSearchInfo=(parmas)=>{
         data:parmas
     })
 }
+//获取产品详情信息接口
+export const reqGoodsInfo =(skuId)=>{
+    return requests({
+        url:`/item/${skuId}`,
+        method:'get',
+    })
+}

@@ -3,11 +3,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
+import routes from '@/router/routes'
 
-import Home from '@/views/Home'
-import Search from '@/views/Search'
-import Login from '@/views/Login'
-import Register from '@/views/Register'
 //需要重写VueRouter.prototype原型对象身上的push|replace方法
 //先把VueRouter.prototype身上的push|replace方法进行保存一份
 let originPush = VueRouter.prototype.push;
@@ -45,33 +42,10 @@ VueRouter.prototype.replace = function(location, resolve, reject) {
   }
 };
 export default new VueRouter({
-
-    routes:[
-        {
-            path:"/home",
-            name:'',
-            component:Home,
-            meta:{show:true}
-        },
-        {
-            path:"/search/:keyword?",
-            name:'search',
-            component:Search,
-            meta:{show:true}
-        },
-        {
-            path:"/login",
-            name:'',
-            component:Login
-        },
-        {
-            path:"/register",
-            name:'',
-            component:Register
-        },
-        {
-            path:"/",
-            redirect:'/home'
-        }
-    ]
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    //返回的这个y=0，代表的滚动条在最上方
+    return { y: 0 };
+  },
+    
 })
