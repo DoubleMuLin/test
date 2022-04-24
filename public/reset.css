@@ -64,7 +64,7 @@ html { overflow-y: scroll; }
 
 a:link:hover{
     color : rgb(219, 196, 90) !important;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 /* 清除浮动 */

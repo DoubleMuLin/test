@@ -173,6 +173,8 @@ export default {
 
     .nav {
       a {
+        text-decoration: none;
+
         height: 45px;
         margin: 0 22px;
         line-height: 45px;
